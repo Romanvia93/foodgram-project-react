@@ -141,21 +141,13 @@ RECIPES_LIMIT = 6
 
 
 REST_FRAMEWORK = {
-    # "DEFAULT_VERSIONING_CLASS":
-    #     "rest_framework.versioning.QueryParameterVersioning",
-
-    # "DEFAULT_VERSION": "v1.0.0",
-
-    # "ALLOWED_VERSIONS": "v1.0.0",
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.AllowAny',
         'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.permissions.IsAdminUser',
     ],
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
