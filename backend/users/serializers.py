@@ -1,6 +1,5 @@
 from djoser.serializers import UserCreateSerializer
 from rest_framework import serializers
-
 from api.models import Follow
 from .models import User
 
@@ -9,9 +8,8 @@ class CustomUserCreateSerializer(UserCreateSerializer):
 
     class Meta(UserCreateSerializer.Meta):
         model = User
-        fields = (
-            'id', 'email', 'username', 'password', 'first_name', 'last_name'
-        )
+        fields = ('id', 'email', 'username',
+                  'password', 'first_name', 'last_name')
 
 
 class UserSerializer(serializers.ModelSerializer):
