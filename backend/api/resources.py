@@ -5,4 +5,7 @@ from .models import Ingredient
 class CategoryResource(resources.ModelResource):
     class Meta:
         model = Ingredient
-        fields = ('id','title','dimension' )
+        fields = ('name', 'measurement_unit', )
+        # exclude = ('id',)
+        import_id_fields = ('name', 'measurement_unit', )
+ 

@@ -1,27 +1,26 @@
 from django.db import models
-from django.utils.html import format_html
 from users.models import User
 
 
 class Ingredient(models.Model):
-    title = models.CharField(
+    name = models.CharField(
         verbose_name='Наименование ингридиента',
         max_length=200,
         unique=True,
     )
-    dimension = models.CharField(
+    measurement_unit = models.CharField(
         verbose_name='Ед. изм.',
         max_length=200,
         help_text='Укажите единицу измерения',
     )
 
     class Meta:
-        ordering = ['title']
+        ordering = ['name']
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'ингредиенты'
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Tag(models.Model):
@@ -32,10 +31,10 @@ class Tag(models.Model):
         max_length=200,
         unique=True,
         verbose_name='Slug тэга')
-    hex_color = models.CharField(
+    color = models.CharField(
         max_length=200,
-        default="#E26C2D",
-        verbose_name='Цветовой HEX-код',
+        default="#00FF00",
+        verbose_name='HEX-код',
         blank=True)
 
     class Meta:
@@ -44,11 +43,11 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-    def colored_name(self):
-        return format_html(
-            '<span style="color: #{};">{}</span>',
-            self.hex_color,
-        )
+    # def colored_name(self):
+    #     return format_html(
+    #         '<span style="color: #{};">{}</span>',
+    #         self.hex_color,
+    #     )
 
 
 class Recipe(models.Model):

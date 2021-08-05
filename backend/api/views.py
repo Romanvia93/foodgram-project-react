@@ -20,25 +20,25 @@ from users.models import User
 
 class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    View with post, delete, put options.
-    Used to post, delete, put Ingredients.
+    Used to list Ingredients.
     """
 
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     permission_classes = (AllowAny, )
-    search_fields = ('title', )
+    search_fields = ('name', )
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    pagination_class = None
 
 
 class TagViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    View with post, delete, put options.
-    Used to post, delete, put tags.
+    Used to list tags.
     """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = (AllowAny, )
+    pagination_class = None
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
@@ -113,8 +113,8 @@ def download_shopping_cart(request):
         ingredients = IngredientRecipe.objects.filter(recipe=recipe)
         for ingredient in ingredients:
             amount = ingredient.amount
-            name = ingredient.ingredient.title
-            measurement_unit = ingredient.ingredient.dimension
+            name = ingredient.ingredient.name
+            measurement_unit = ingredient.ingredient.measurement_unit
             if name not in buying_list:
                 buying_list[name] = {
                     'measurement_unit': measurement_unit,

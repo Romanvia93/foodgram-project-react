@@ -14,8 +14,8 @@ admin.site.register(Recipe, RecipeAdmin)
 
 
 class IngredientAdmin(ImportMixin, admin.ModelAdmin):
-    list_filter = ('title','dimension' )
-    list_filter = ( 'title',)
+    list_filter = ('name','measurement_unit' )
+    list_filter = ( 'name',)
     resource_class = CategoryResource
 
 admin.site.register(Ingredient, IngredientAdmin)  
