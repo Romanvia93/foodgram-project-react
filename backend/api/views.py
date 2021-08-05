@@ -16,6 +16,7 @@ from .serializers import (IngredientSerializer, TagSerializer,
                           ShoppingListSerializer, FavoriteSerializer,
                           FollowSerializer, ShowFollowSerializer)
 from users.models import User
+from .paginators import CustomPageNumberPaginator
 
 
 class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
@@ -49,6 +50,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     filter_class = RecipeFilter
     permission_classes = [AdminOrAuthorOrReadOnly, ]
+    pagination_class = CustomPageNumberPaginator
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
