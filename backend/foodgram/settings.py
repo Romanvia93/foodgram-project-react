@@ -142,8 +142,7 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/dj_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'dj_static')
 
@@ -153,8 +152,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "dj_media")
 AUTH_USER_MODEL = 'users.User'
 
 RECIPES_LIMIT = 6
-
-
 
 REST_FRAMEWORK = {
 
