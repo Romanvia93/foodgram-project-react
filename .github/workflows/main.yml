@@ -44,6 +44,7 @@ jobs:
         uses: docker/build-push-action@v2 # Выполняет push образа в DockerHub 
         with:
           push: true
+          context: ./backend/
           tags: romanvia93/foodgram:v_1
 
   # deploy:
