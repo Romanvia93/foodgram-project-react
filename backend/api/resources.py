@@ -6,6 +6,4 @@ class CategoryResource(resources.ModelResource):
     class Meta:
         model = Ingredient
         fields = ('name', 'measurement_unit', )
-        # exclude = ('id',)
         import_id_fields = ('name', 'measurement_unit', )
- 

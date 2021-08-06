@@ -43,12 +43,6 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-    # def colored_name(self):
-    #     return format_html(
-    #         '<span style="color: #{};">{}</span>',
-    #         self.hex_color,
-    #     )
-
 
 class Recipe(models.Model):
     author = models.ForeignKey(
