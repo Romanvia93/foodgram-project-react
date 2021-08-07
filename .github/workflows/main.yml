@@ -66,8 +66,6 @@ jobs:
             cd infra/
             sudo docker-compose stop
             sudo docker-compose rm web
-            cd ..
-            cd backend/
             # Создаст файл для переменных окружения
             touch .env 
             # Наполнит файл переменными окружения из секретов GitHub
