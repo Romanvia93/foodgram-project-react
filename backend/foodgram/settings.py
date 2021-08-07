@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-otmmj70p1rsc#twzy4gyl9-biq=(g3f=4w+sn-awq*a2^4rbj0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -143,11 +143,11 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATIC_URL = '/dj_static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'dj_static')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = "/dj_media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "dj_media")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'users.User'
 
