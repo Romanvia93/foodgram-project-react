@@ -65,6 +65,7 @@ jobs:
         script: |
           sudo docker pull romanvia93/foodgram:v_1
           sudo docker pull romanvia93/foodgram_frontend:v_1
+          cd infra/
           sudo docker-compose stop
           sudo docker-compose rm backend
           touch .env
