@@ -32,8 +32,8 @@ services:
     volumes:
       # - ./default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - static_value:/static/
-      - media_value:/media/
+      - static_value:/var/html//static/
+      - media_value:/var/html//media/
       - result_build:/usr/share/nginx/html/
       - ./docs:/usr/share/nginx/html/api/docs
     depends_on: 
