@@ -21,7 +21,7 @@ services:
   frontend:
     image: romanvia93/foodgram_frontend:v_1
     volumes:
-      - frontend_data:/app/build
+      - result_build:/app/result_build/build
     depends_on:
       - db
 
@@ -32,12 +32,11 @@ services:
     volumes:
       # - ./default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - static_value:/var/html/static/
-      - media_value:/var/html/media/
-      - frontend_data:/usr/share/nginx/html/
+      - static_value:/static/
+      - media_value:/media/
+      - result_build:/usr/share/nginx/html/
       # - ./docs:/usr/share/nginx/html/api/docs
-      - ./docs/redoc.html:/usr/share/nginx/html/api/docs/redoc.html
-      - ./docs/openapi-schema.yml:/usr/share/nginx/html/api/docs/openapi-schema.yml
+      - ./docs:/usr/share/nginx/html/api/docs
     depends_on: 
       - web
       - frontend
@@ -47,5 +46,5 @@ services:
 volumes:
   static_value:  
   media_value:
-  frontend_data:
+  result_build:
   postgres_data: 
