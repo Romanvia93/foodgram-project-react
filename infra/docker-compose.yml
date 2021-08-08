@@ -38,7 +38,7 @@ services:
       - static_value:/code/backend_static/
       - media_value:/code/backend_media/
     depends_on:
-      - backend
+      - web
       - frontend
 
 volumes:
@@ -46,3 +46,12 @@ volumes:
   frontend_data:
   static_value:
   media_value:
+
+
+
+
+
+
+
+
+
