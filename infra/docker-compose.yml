@@ -11,8 +11,8 @@ services:
     image: romanvia93/foodgram:v_1
     restart: always
     volumes:
-      - static_value:/app/static/
-      - media_value:/app/media/
+      - static_value:/app/backend_static/
+      - media_value:/app/backend_media/
     depends_on:
       - db
     env_file:
@@ -21,7 +21,7 @@ services:
   frontend:
     image: romanvia93/foodgram_frontend:v_1
     volumes:
-      - result_build:/app/result_build/build
+      - frontend_data:/app/build
     depends_on:
       - db
 
@@ -32,10 +32,12 @@ services:
     volumes:
       # - ./default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - static_value:/var/html//static/
-      - media_value:/var/html//media/
-      - result_build:/usr/share/nginx/html/
-      - ./docs:/usr/share/nginx/html/api/docs
+      - static_value:/app/backend_static/
+      - media_value:/app/backend_media/
+      - frontend_data:/usr/share/nginx/html/
+      # - ./docs:/usr/share/nginx/html/api/docs
+      - ./docs/redoc.html:/usr/share/nginx/html/api/docs/redoc.html
+      - ./docs/openapi-schema.yml:/usr/share/nginx/html/api/docs/openapi-schema.yml
     depends_on: 
       - web
       - frontend
@@ -45,5 +47,5 @@ services:
 volumes:
   static_value:  
   media_value:
-  result_build:
+  frontend_data:
   postgres_data: 
