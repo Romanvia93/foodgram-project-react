@@ -204,7 +204,6 @@ class ListFollowViewSet(generics.ListAPIView):
     View with post and delete options.
     Used to list Follow objects.
     """
-    queryset = User.objects.all()
     permission_classes = [IsAuthenticated, ]
     serializer_class = ShowFollowSerializer
 

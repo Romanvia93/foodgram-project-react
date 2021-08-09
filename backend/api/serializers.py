@@ -3,6 +3,7 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 from foodgram.settings import RECIPES_LIMIT
 from users.models import User
+from django.db import transaction
 from .models import (Favorite, Follow, Ingredient,
                      IngredientRecipe, Recipe, ShoppingList, Tag)
 
@@ -183,6 +184,7 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
             )
         return data
 
+    @transaction.atomic
     def create(self, validated_data):
         tags_data = validated_data.pop('tags')
         ingredients_data = validated_data.pop('ingredients')
@@ -205,7 +207,7 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
 
         return recipe
 
-
+    @transaction.atomic
     def update(self, instance, validated_data):
         ingredient_data = validated_data.pop('ingredients')
         tags_data = validated_data.pop('tags')
