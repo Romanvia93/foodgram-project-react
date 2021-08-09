@@ -7,7 +7,7 @@ from rest_framework import status, viewsets, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .filters import RecipeFilter
+from .filters import RecipeFilter, IngredientNameFilter
 from .permissions import AdminOrAuthorOrReadOnly
 from .models import (Ingredient, Tag, Recipe, ShoppingList, IngredientRecipe,
                      Favorite, Follow)
@@ -23,13 +23,11 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Used to list Ingredients.
     """
-
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     permission_classes = (AllowAny, )
-    search_fields = ('name', )
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     pagination_class = None
+    filterset_class = IngredientNameFilter
 
 
 class TagViewSet(viewsets.ReadOnlyModelViewSet):

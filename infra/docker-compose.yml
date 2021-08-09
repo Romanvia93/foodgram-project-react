@@ -46,12 +46,3 @@ volumes:
   frontend_data:
   static_value:
   media_value:
-
-
-
-
-
-
-
-
-
