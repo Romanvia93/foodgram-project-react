@@ -194,17 +194,19 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
         recipe.save()
         recipe.tags.set(tags_data)
 
-        for ingredient in ingredients_data:
-            ingredient_model = Ingredient.objects.get(id=ingredient['id'])
-            amount = ingredient['amount']
+        IngredientRecipe.objects.bulk_create([ingredients_data, recipe])
+
+        # for ingredient in ingredients_data:
+        #     ingredient_model = Ingredient.objects.get(id=ingredient['id'])
+        #     amount = ingredient['amount']
             # id = serializers.ReadOnlyField()
             # IngredientRecipe.objects.create(
             #     ingredient=ingredient_model,
             #     recipe=recipe,
             #     amount=amount
             # )
-            IngredientRecipe.objects.bulk_create(
-                [ingredient_model, recipe, amount])
+            # IngredientRecipe.objects.bulk_create(
+            #     [ingredient_model, recipe, amount])
 
         return recipe
 
