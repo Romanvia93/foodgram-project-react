@@ -194,27 +194,11 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
         recipe.save()
         recipe.tags.set(tags_data)
 
-        # IngredientRecipe.objects.bulk_create([ingredients_data, recipe])
-
-        ingrec = [IngredientRecipe(
+        ingredient_recipes = [IngredientRecipe(
             ingredient=Ingredient.objects.get(id=ingredient['id']),
             recipe=recipe,
             amount=ingredient['amount']) for ingredient in ingredients_data]
-        IngredientRecipe.objects.bulk_create(ingrec)
-# posts = [Post(author=user, group=group, text = str(i)) for i in range(13)]
-
-# Posts.objects.bulk_create(ingrec)
-        # for ingredient in ingredients_data:
-        #     ingredient_model = Ingredient.objects.get(id=ingredient['id'])
-        #     amount = ingredient['amount']
-        # id = serializers.ReadOnlyField()
-        # IngredientRecipe.objects.create(
-        #     ingredient=ingredient_model,
-        #     recipe=recipe,
-        #     amount=amount
-        # )
-        # IngredientRecipe.objects.bulk_create(
-        #     [ingredient_model, recipe, amount])
+        IngredientRecipe.objects.bulk_create(ingredient_recipes)
 
         return recipe
 
@@ -224,18 +208,12 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
         tags_data = validated_data.pop('tags')
 
         IngredientRecipe.objects.filter(recipe=instance).delete()
-        for new_ingredient in ingredient_data:
-            ingredient = Ingredient.objects.get(id=new_ingredient['id'])
-            amount = new_ingredient['amount']
 
-            IngredientRecipe.objects.bulk_create(
-                [ingredient, instance, amount])
-
-            # IngredientRecipe.objects.create(
-            #     ingredient=Ingredient.objects.get(id=new_ingredient['id']),
-            #     recipe=instance,
-            #     amount=new_ingredient['amount']
-            # )
+        ingredient_recipes = [IngredientRecipe(
+            ingredient=Ingredient.objects.get(id=ingredient['id']),
+            recipe=instance,
+            amount=ingredient['amount']) for ingredient in ingredient_data]
+        IngredientRecipe.objects.bulk_create(ingredient_recipes)
 
         instance.name = validated_data.pop('name')
         instance.text = validated_data.pop('text')
