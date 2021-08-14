@@ -4,7 +4,7 @@
 
 Product Assistant app is a site where users can post recipes, add other people's recipes to favorites, and subscribe to other authors' publications. The Shopping List service will allow users to create a list of products that need to be purchased to prepare the selected dishes.
 
-#### Проект доступен по адрессу
+#### The project is available
  [Foodgram](http://84.252.141.200/recipes)
 
 
